@@ -2,6 +2,7 @@ import { Express } from "express";
 import { toursRoute } from "./tour.route";
 import { categoriesRoute } from "./category.route";
 import { cartRoute } from "./cart.route";
+import { orderRoute } from "./order.route";
 
 export const routesClient = (app: Express) => {
 
@@ -10,5 +11,7 @@ export const routesClient = (app: Express) => {
   app.use("/categories", categoriesRoute);
 
   app.use("/cart", cartRoute);
+
+  app.use("/order", orderRoute);
 
 }
