@@ -72,6 +72,27 @@ const eventDeleteItem = () => {
   })
 }
 
+const eventUpdateQuantityItem = () => {
+  const listInputQuantity = document.querySelectorAll("[table-cart] input[name='quantity']");
+
+  listInputQuantity.forEach(input => {
+    input.addEventListener("change", () => {
+      const quantity = parseInt(input.value);
+      if(quantity > 0) {
+        const tourId = input.getAttribute("item-id");
+        const cart = JSON.parse(localStorage.getItem("cart"));
+
+        const existItem = cart.find(item => item.tourId == tourId);
+        if(existItem) {
+          existItem.quantity = quantity;
+          localStorage.setItem("cart", JSON.stringify(cart));
+          drawCart();
+        }
+      }
+    })
+  })
+}
+
 const drawCart = () => {
   const tableCart = document.querySelector("[table-cart]");
   if(tableCart) {
@@ -126,6 +147,8 @@ const drawCart = () => {
         }
 
         eventDeleteItem();
+
+        eventUpdateQuantityItem();
       })
   }
 }
