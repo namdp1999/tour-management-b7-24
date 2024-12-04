@@ -59,6 +59,19 @@ if(formAddToCart) {
 }
 
 // Hiển thị sản phẩm vào trang giỏ hàng
+const eventDeleteItem = () => {
+  const listButtonDelete = document.querySelectorAll("[btn-delete]");
+  listButtonDelete.forEach(button => {
+    button.addEventListener("click", () => {
+      const tourId = button.getAttribute("btn-delete");
+      const cart = JSON.parse(localStorage.getItem("cart"));
+      const newCart = cart.filter(item => item.tourId != tourId);
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      drawCart();
+    })
+  })
+}
+
 const drawCart = () => {
   const tableCart = document.querySelector("[table-cart]");
   if(tableCart) {
@@ -111,6 +124,8 @@ const drawCart = () => {
         if(totalPrice) {
           totalPrice.innerHTML = total.toLocaleString();
         }
+
+        eventDeleteItem();
       })
   }
 }
