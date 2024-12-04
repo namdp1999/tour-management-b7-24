@@ -7,9 +7,14 @@ block main
       .row
         .col-6
           .inner-images
-            each image in tourDetail.images
-              .inner-image
-                img(src=image)
+            .swiper.swiper-images-main
+              .swiper-wrapper
+                each image in tourDetail.images
+                  .swiper-slide
+                    .inner-image
+                      img(src=image)
+              .swiper-button-prev
+              .swiper-button-next
         
         .col-6
           .inner-title #{tourDetail.title}
