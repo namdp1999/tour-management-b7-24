@@ -8,6 +8,7 @@ import bodyParser from "body-parser";
 import { routesClient } from "./routes/client/index.route";
 import adminRoutes from "./routes/admin/index.route";
 import { systemConfig } from "./config/system";
+import path from "path";
 
 const app: Express = express();
 const port: number = 3000;
@@ -22,6 +23,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
+
+// TinyMCE
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 // App Local Variables
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
