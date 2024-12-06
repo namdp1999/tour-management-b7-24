@@ -42,7 +42,7 @@ export const index = async (req: Request, res: Response) => {
       where: {
         id: item.tourId,
         deleted: false,
-        status: "acitve"
+        status: "active"
       },
       raw: true
     });
